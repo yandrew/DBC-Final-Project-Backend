@@ -3,7 +3,8 @@ class CreateOffers < ActiveRecord::Migration
     create_table :offers do |t|
       t.integer :offer_price
       t.belongs_to :user, index: true
-
+      t.integer :product_id
+      
       t.timestamps
     end
   end

@@ -4,6 +4,7 @@ class CreateListings < ActiveRecord::Migration
       t.integer :max_price
       t.integer :base_price
       t.belongs_to :user, index: true
+      t.integer :product_id
 
       t.timestamps
     end

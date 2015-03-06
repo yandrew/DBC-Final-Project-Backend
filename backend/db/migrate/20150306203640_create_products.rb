@@ -6,8 +6,6 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.string :condition
       t.belongs_to :user, index: true
-      t.belongs_to :listing, index: true
-      t.belongs_to :offer, index: true
 
       t.timestamps
     end
