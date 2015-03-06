@@ -1,12 +1,9 @@
 FactoryGirl.define do
   factory :product do
-    name "MyString"
-image_url "MyText"
-description "MyText"
-condition "MyString"
-user nil
-listing nil
-offer nil
+    name {Faker::Commerce.product_name}
+		image_url "MyText"
+		description "MyText"
+		condition "MyString"
   end
 
 end

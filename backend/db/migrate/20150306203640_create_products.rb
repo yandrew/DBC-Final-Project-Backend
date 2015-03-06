@@ -5,9 +5,9 @@ class CreateProducts < ActiveRecord::Migration
       t.text :image_url
       t.text :description
       t.string :condition
-      t.references :user, index: true
-      t.references :listing, index: true
-      t.references :offer, index: true
+      t.belongs_to :user, index: true
+      t.belongs_to :listing, index: true
+      t.belongs_to :offer, index: true
 
       t.timestamps
     end

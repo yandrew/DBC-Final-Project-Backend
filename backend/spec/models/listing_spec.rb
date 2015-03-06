@@ -1,5 +1,7 @@
 require 'rails_helper'
-
+require 'faker'
 RSpec.describe Listing, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "creates a valid listing" do
+    listing = FactoryGirl.create(:user_with_listing)
+  end
 end
