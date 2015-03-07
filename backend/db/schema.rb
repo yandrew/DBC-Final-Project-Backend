@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20150306205015) do
     t.integer  "max_price"
     t.integer  "base_price"
     t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150306205015) do
   create_table "offers", force: true do |t|
     t.integer  "offer_price"
     t.integer  "user_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,14 +64,10 @@ ActiveRecord::Schema.define(version: 20150306205015) do
     t.text     "description"
     t.string   "condition"
     t.integer  "user_id"
-    t.integer  "listing_id"
-    t.integer  "offer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "products", ["listing_id"], name: "index_products_on_listing_id", using: :btree
-  add_index "products", ["offer_id"], name: "index_products_on_offer_id", using: :btree
   add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
 
   create_table "ratings", force: true do |t|

@@ -5,6 +5,7 @@ class CreateListings < ActiveRecord::Migration
       t.integer :base_price
       t.belongs_to :user, index: true
       t.integer :product_id
+      t.datetime :expires_at
 
       t.timestamps
     end
