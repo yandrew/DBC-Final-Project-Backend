@@ -16,3 +16,10 @@ FactoryGirl.define do
 	factory :offer do
     offer_price {Faker::Commerce.price.to_s}
   end
+
+  factory :product do
+    name {Faker::Commerce.product_name}
+		image_url "MyText"
+		description "MyText"
+		condition "MyString"
+  end
