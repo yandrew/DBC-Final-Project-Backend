@@ -2,7 +2,9 @@ require 'rails_helper'
 require 'faker'
 
 RSpec.describe Bid, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "creates a valid bid" do
+    bid = FactoryGirl.create(:listing_with_bid)
+  end
 end
 
 
