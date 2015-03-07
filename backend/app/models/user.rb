@@ -7,17 +7,17 @@ class User < ActiveRecord::Base
 	has_many :products, through: :listings
 	has_many :products, through: :offers
 
-validates :username, :presence => {:message => "Type in username you must"}
-  validates :username, :uniqueness => {:message => "Please stop trying to steal other people's usernames."}
+# validates :username, :presence => {:message => "Type in username you must"}
+#   validates :username, :uniqueness => {:message => "Please stop trying to steal other people's usernames."}
 
-  def password
-    @password ||= Password.new(password_hash)
-  end
+#   def password
+#     @password ||= Password.new(password_hash)
+#   end
 
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
-  end
+#   def password=(new_password)
+#     @password = Password.create(new_password)
+#     self.password_hash = @password
+#   end
 
   # def create
   #   @user = User.new(params[:user])

@@ -4,7 +4,6 @@ FactoryGirl.define do
 		description "MyText"
 		author_id 1
 		recipient_id 1
-		bid nil
   end
 
 end

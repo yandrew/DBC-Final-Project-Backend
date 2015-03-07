@@ -5,7 +5,7 @@ class CreateRatings < ActiveRecord::Migration
       t.text :description
       t.integer :author_id
       t.integer :recipient_id
-      t.belongs_to :bid, index: true
+      t.belongs_to :bid
 
       t.timestamps
     end

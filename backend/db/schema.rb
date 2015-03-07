@@ -17,15 +17,12 @@ ActiveRecord::Schema.define(version: 20150306205015) do
   enable_extension "plpgsql"
 
   create_table "bids", force: true do |t|
-    t.boolean  "transaction", default: false
+    t.boolean  "purchased",  default: false
     t.integer  "listing_id"
     t.integer  "offer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "bids", ["listing_id"], name: "index_bids_on_listing_id", using: :btree
-  add_index "bids", ["offer_id"], name: "index_bids_on_offer_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -33,8 +30,6 @@ ActiveRecord::Schema.define(version: 20150306205015) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "categories", ["product_id"], name: "index_categories_on_product_id", using: :btree
 
   create_table "listings", force: true do |t|
     t.integer  "max_price"
@@ -46,17 +41,14 @@ ActiveRecord::Schema.define(version: 20150306205015) do
     t.datetime "updated_at"
   end
 
-  add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
-
   create_table "offers", force: true do |t|
     t.integer  "offer_price"
     t.integer  "user_id"
     t.integer  "product_id"
+    t.integer  "bid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "name"
@@ -68,8 +60,6 @@ ActiveRecord::Schema.define(version: 20150306205015) do
     t.datetime "updated_at"
   end
 
-  add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
-
   create_table "ratings", force: true do |t|
     t.integer  "score"
     t.text     "description"
@@ -79,8 +69,6 @@ ActiveRecord::Schema.define(version: 20150306205015) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "ratings", ["bid_id"], name: "index_ratings_on_bid_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"

@@ -1,5 +1,6 @@
 class Listing < ActiveRecord::Base
-	has_one :product
+	belongs_to :product
   belongs_to :user
   has_many :bids
+  has_many :offers
 end

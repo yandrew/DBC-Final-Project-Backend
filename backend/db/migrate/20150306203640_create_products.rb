@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :image_url
       t.text :description
       t.string :condition
-      t.belongs_to :user, index: true
+      t.belongs_to :user
 
       t.timestamps
     end
