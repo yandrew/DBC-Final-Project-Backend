@@ -5,7 +5,7 @@ FactoryGirl.define do
 		password_hash "123"
 		name {Faker::Name.name}
 		email {Faker::Internet.email}
-		avatar {Faker::Avatar.image}
+		avatar {"http://lorempixel.com/175/175/people/#{rand(1..10).to_s}"}
 		bio "MyText"
     rating {rand(1..10)}
 	end

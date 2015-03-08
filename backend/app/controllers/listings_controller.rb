@@ -4,24 +4,25 @@ class ListingsController < ApplicationController
 		@listings = []
 		listings.map do |listing|
 			
-			listing = {
+			@listing = {
 				"listing_id" => listing.id,
 				"product_id" => listing.product.id,
-				"name" => "#{listing.product.name}",
-				"category" => "#{listing.product.category.name}",
-				"image_url" => "#{listing.product.image_url}",
-				"description" => "#{listing.product.description}",
-				"condition" => "#{listing.product.condition}",
-				"created_at" => "#{listing.created_at}",
-				"expires_at" => "#{listing.expires_at}",
-				"username" => "#{listing.user.username}",
+				"name" => listing.product.name,
+				"category" => listing.product.category.name,
+				"image_url" => listing.product.image_url,
+				"description" => listing.product.description,
+				"condition" => listing.product.condition,
+				"created_at" => listing.created_at,
+				"expires_at" => listing.expires_at,
+				"username" => listing.user.username,
 				"max_price" => listing.max_price,
-				"accept_price" => listing.accept_price
+				"accept_price" => listing.accept_price,
+				"lowest_offer" => listing.bids.order(created_at: :desc).first.offer.offer_price
 			}
-			@listings << listing
+			@listings << @listing
 		end
 		
-		render json: {listing: @listings}
+		render json: @listings
 	end
 
 	def create
@@ -35,38 +36,38 @@ class ListingsController < ApplicationController
 		@listing = []
 		offers.map do |offer|
 			
-			offer = {
+			@offer = {
 				"product_id" => offer.product.id,
-				"name" => "#{offer.product.name}",
-				"image_url" => "#{offer.product.image_url}",
-				"description" => "#{offer.product.description}",
-				"condition" => "#{offer.product.condition}",
-				"created_at" => "#{offer.created_at}",
+				"name" => offer.product.name,
+				"image_url" => offer.product.image_url,
+				"description" => offer.product.description,
+				"condition" => offer.product.condition,
+				"created_at" => offer.created_at,
 				"offer_price" => offer.offer_price,
 				"seller" => offer.user
 			}
-			@offers << offer
+			@offers << @offer
 		end
 
 		listing = {
 			"listing_id" => listing.id,
 			"product_id" => listing.product.id,
-			"name" => "#{listing.product.name}",
-			"category" => "#{listing.product.category.name}",
-			"image_url" => "#{listing.product.image_url}",
-			"description" => "#{listing.product.description}",
-			"condition" => "#{listing.product.condition}",
-			"created_at" => "#{listing.created_at}",
-			"expires_at" => "#{listing.expires_at}",
-			"username" => "#{listing.user.username}",
+			"name" => listing.product.name,
+			"category" => listing.product.category.name,
+			"image_url" => listing.product.image_url,
+			"description" => listing.product.description,
+			"condition" => listing.product.condition,
+			"created_at" => listing.created_at,
+			"expires_at" => listing.expires_at,
+			"username" => listing.user.username,
 			"max_price" => listing.max_price,
 			"accept_price" => listing.accept_price,
+			"lowest_offer" => listing.bids.order(created_at: :desc).first.offer.offer_price,
 			"offers" => @offers
 		}
 		@listing << listing
-		puts listing
 
-		render json: {listing: @listing}
+		render json: @listing
 	end
 
 	def update

@@ -50,7 +50,9 @@ end
 		product4.update(category_id: rand(1..40))
 		offer4.product = product4
 		listing.bids << offer2.create_bid
+		sleep 2
 		listing.bids << offer3.create_bid
+		sleep 2
 		listing.bids << offer4.create_bid
 		listing.save
 	}
