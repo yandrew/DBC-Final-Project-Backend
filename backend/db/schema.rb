@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150306205015) do
   end
 
   create_table "listings", force: true do |t|
-    t.integer  "max_price"
-    t.integer  "accept_price"
+    t.float    "max_price"
+    t.float    "accept_price"
     t.integer  "user_id"
     t.integer  "product_id"
     t.datetime "expires_at"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150306205015) do
   end
 
   create_table "offers", force: true do |t|
-    t.integer  "offer_price"
+    t.float    "offer_price"
     t.integer  "user_id"
     t.integer  "product_id"
     t.integer  "bid_id"

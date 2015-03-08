@@ -5,6 +5,7 @@ gem 'rails', '4.1.6'
 
 gem 'rails-api'
 
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'pg'
 

@@ -11,13 +11,15 @@ FactoryGirl.define do
 	end
 
 	factory :listing do
-    max_price {Faker::Commerce.price.to_s}
-		accept_price {Faker::Commerce.price.to_s}
+    max_price {rand(200..300)}
+		accept_price {rand(50)}
     expires_at {Faker::Time.forward(rand(1..30), :all)}
 	end
-
+  range = [1.99, 49.99, 50.99, 99.99, 100.99, 149.99, 150.99, 199.99]
+  @a = range.pop
+  @b = range.pop
 	factory :offer do
-    offer_price {Faker::Commerce.price.to_s}
+    offer_price {rand(1.0..200.0)}
   end
 
   tfn = ["average,", "mint", "new", "good", "old" ,"working"]
