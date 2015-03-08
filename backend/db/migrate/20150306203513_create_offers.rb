@@ -3,7 +3,7 @@ class CreateOffers < ActiveRecord::Migration
     create_table :offers do |t|
       t.integer :offer_price
       t.belongs_to :user
-      t.integer :product_id
+      t.belongs_to :product
       t.integer :bid_id
       
       t.timestamps
