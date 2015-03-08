@@ -12,7 +12,7 @@ FactoryGirl.define do
 
 	factory :listing do
     max_price {Faker::Commerce.price.to_s}
-		base_price {Faker::Commerce.price.to_s}
+		accept_price {Faker::Commerce.price.to_s}
     expires_at {Faker::Time.forward(rand(1..30), :all)}
 	end
 
@@ -20,7 +20,7 @@ FactoryGirl.define do
     offer_price {Faker::Commerce.price.to_s}
   end
 
-  tfn = ["average," "mint", "new", "good", "old" ,"working"]
+  tfn = ["average,", "mint", "new", "good", "old" ,"working"]
 
   factory :product do
     name {Faker::Commerce.product_name}

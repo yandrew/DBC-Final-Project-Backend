@@ -26,14 +26,13 @@ ActiveRecord::Schema.define(version: 20150306205015) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
-    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "listings", force: true do |t|
     t.integer  "max_price"
-    t.integer  "base_price"
+    t.integer  "accept_price"
     t.integer  "user_id"
     t.integer  "product_id"
     t.datetime "expires_at"
