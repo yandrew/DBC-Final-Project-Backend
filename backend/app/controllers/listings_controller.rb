@@ -6,6 +6,7 @@ class ListingsController < ApplicationController
 			
 			listing = {
 				"name" => "#{listing.product.name}",
+				"category" => "#{listing.product.category.name}",
 				"description" => "#{listing.product.description}",
 				"condition" => "#{listing.product.condition}",
 				"created_at" => "#{listing.created_at}",

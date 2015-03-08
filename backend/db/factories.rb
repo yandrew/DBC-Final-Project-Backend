@@ -42,7 +42,6 @@ FactoryGirl.define do
   end
 
   factory :category do
-    name "MyString"
-    association :product_id, factory: :product
+    name {Faker::Commerce.department}
   end
 end

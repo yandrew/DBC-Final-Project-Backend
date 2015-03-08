@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150306205015) do
     t.text     "description"
     t.string   "condition"
     t.integer  "user_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

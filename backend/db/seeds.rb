@@ -1,23 +1,6 @@
 file = File.expand_path('../factories', __FILE__)
 require_relative file
 
-10.times {
-	user = FactoryGirl.create :user
-	product = FactoryGirl.create :product, :user => user
-	user.products << product
-	rand(10).times {
-		listing = FactoryGirl.create :listing, :user => user
-		product1 = FactoryGirl.create :product
-		listing.product = product1
-		offer = FactoryGirl.create :offer, :user => user
-		product2 = FactoryGirl.create :product
-		offer.product = product2
-		listing.bids << offer.create_bid
-		listing.save
-		offer.save
-	}
-}
-
 categories = []
 require 'csv'
 
@@ -39,3 +22,25 @@ categories = CATEGORIES.uniq!
 categories.each do |category|
 	Category.create(name: category)
 end
+
+10.times {
+	user = FactoryGirl.create :user
+	product = FactoryGirl.create :product, :user => user
+	product.update(category_id: rand(1..40))
+	user.products << product
+	rand(10).times {
+		listing = FactoryGirl.create :listing, :user => user
+		product1 = FactoryGirl.create :product
+		product1.update(category_id: rand(1..40))
+		listing.product = product1
+		offer = FactoryGirl.create :offer, :user => user
+		product2 = FactoryGirl.create :product
+		product2.update(category_id: rand(1..40))
+		offer.product = product2
+		listing.bids << offer.create_bid
+		listing.save
+		offer.save
+	}
+}
+
+

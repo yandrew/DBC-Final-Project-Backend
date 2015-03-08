@@ -1,3 +1,3 @@
 class Category < ActiveRecord::Base
-	has_one :product
+	has_many :products
 end

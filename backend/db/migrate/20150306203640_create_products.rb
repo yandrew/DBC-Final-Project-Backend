@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.string :condition
       t.belongs_to :user
+      t.belongs_to :category
 
       t.timestamps
     end
