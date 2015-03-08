@@ -7,6 +7,7 @@ require 'csv'
 csv_file = File.expand_path('../categories.csv', __FILE__)
 
 CSV.foreach(csv_file) do |row|
+	row[0].gsub!("&", "and")
 	categories << row
 end
 
@@ -23,23 +24,35 @@ categories.each do |category|
 	Category.create(name: category)
 end
 
-10.times {
+5.times {
 	user = FactoryGirl.create :user
 	product = FactoryGirl.create :product, :user => user
 	product.update(category_id: rand(1..40))
 	user.products << product
-	rand(10).times {
+}
+20.times {
+	user = FactoryGirl.create :user
+	rand(5).times {
 		listing = FactoryGirl.create :listing, :user => user
 		product1 = FactoryGirl.create :product
 		product1.update(category_id: rand(1..40))
 		listing.product = product1
-		offer = FactoryGirl.create :offer, :user => user
+		offer2 = FactoryGirl.create :offer, :user => user
 		product2 = FactoryGirl.create :product
 		product2.update(category_id: rand(1..40))
-		offer.product = product2
-		listing.bids << offer.create_bid
+		offer2.product = product2
+		offer3 = FactoryGirl.create :offer, :user => user
+		product3 = FactoryGirl.create :product
+		product3.update(category_id: rand(1..40))
+		offer3.product = product3
+		offer4 = FactoryGirl.create :offer, :user => user
+		product4 = FactoryGirl.create :product
+		product4.update(category_id: rand(1..40))
+		offer4.product = product4
+		listing.bids << offer2.create_bid
+		listing.bids << offer3.create_bid
+		listing.bids << offer4.create_bid
 		listing.save
-		offer.save
 	}
 }
 
