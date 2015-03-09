@@ -12,14 +12,14 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automaticall
-    get '/user/:id/listings' => "users#listings"
-    get '/user/:id/offers' => "users#offers"
-    get '/user/:id/offers/:listing_id' => "users#show_offer"
-    get '/user/:id/offers/:offer_id' => "users#show_listing"
-    post '/listings' => "user#create"
-  resources :listings do
-    resources :offers
-  end
+    get '/users/:user_id/listings' => "users#listings"
+    get '/users/:user_id/offers' => "users#offers"
+    resources :users
+    resources :listings do
+      resources :offers
+    end
+    resources :products
+    resources :ratings
   # Example resource route with options:
   #   resources :products do
   #     member do

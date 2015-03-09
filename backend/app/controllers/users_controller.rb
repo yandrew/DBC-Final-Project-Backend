@@ -1,8 +1,16 @@
 class UsersController < ApplicationController
+	def index
+	end
+
+	def show
+		@user = User.find(params[:id])
+		render json: @user
+	end
+
 	def create
 	end
 	def listings
-		@user = User.find(params[:id])
+		@user = User.find(params[:user_id])
 		listings = @user.listings
 		@listings = []
 		listings.map do |listing|
@@ -17,7 +25,7 @@ class UsersController < ApplicationController
 					"created_at" => bid.offer.created_at,
 					"offer_price" => bid.offer.offer_price,
 					"seller" => bid.offer.user
-				}
+					}
 				@offers << @offer
 			end
 			@listing = {
@@ -35,15 +43,14 @@ class UsersController < ApplicationController
 				"accept_price" => listing.accept_price,
 				"lowest_offer" => listing.bids.order(created_at: :desc).first.offer.offer_price,
 				"offers" => @offers
-
-			}
+				}
 			@listings << @listing
 		end
-		
 		render json: @listings
 	end
+
 	def offers
-		@user = User.find(params[:id])
+		@user = User.find(params[:user_id])
 		@offers = @user.offers
 		@listings = []
 		@offers.map do |offer|
@@ -65,12 +72,9 @@ class UsersController < ApplicationController
 			}
 			@listings << listing
 		end
-		
 		render json: @listings
 	end
-	def show_listing
-	end
-	def show_offer
-	end
+
+
 		
 end

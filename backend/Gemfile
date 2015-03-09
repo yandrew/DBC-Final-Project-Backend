@@ -21,6 +21,8 @@ group :test, :development do
 	gem 'railroady'
 end
 
+gem 'cloudinary'
+gem 'carrierwave'
 
 gem 'safe_attributes'
 
