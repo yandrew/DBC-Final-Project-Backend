@@ -40,31 +40,37 @@ end
 	product = FactoryGirl.create :product
 	product.update(category_id: rand(1..70))
 	listing.product = product
+	user1.products << product
 
 	listing1 = FactoryGirl.create :listing, :user => user2
 	product1 = FactoryGirl.create :product
 	product1.update(category_id: rand(1..70))
 	listing1.product = product1
+	user2.products << product1
 
 	offer2 = FactoryGirl.create :offer, :user => user1
 	product2 = FactoryGirl.create :product
 	product2.update(category_id: rand(1..70))
 	offer2.product = product2
+	user1.products << product2
 
 	offer3 = FactoryGirl.create :offer, :user => user1
 	product3 = FactoryGirl.create :product
 	product3.update(category_id: rand(1..70))
 	offer3.product = product3
+	user1.products << product3
 
 	offer4 = FactoryGirl.create :offer, :user => user2
 	product4 = FactoryGirl.create :product
 	product4.update(category_id: rand(1..70))
 	offer4.product = product4
+	user2.products << product4
 
 	offer5 = FactoryGirl.create :offer, :user => user2
 	product5 = FactoryGirl.create :product
 	product5.update(category_id: rand(1..70))
 	offer5.product = product5
+	user2.products << product5
 
 	listing.bids << offer2.create_bid
 	sleep 2
