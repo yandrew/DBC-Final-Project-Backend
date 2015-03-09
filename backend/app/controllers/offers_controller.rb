@@ -9,6 +9,8 @@ class OffersController < ApplicationController
 		@product = @offer.create_product(name: params[:name], description: params[:description], image_url: params[:image_url])
 		@listing.bids << @offer.create_bid
 		@user.products << @product
+		@product.save
+		@user.save
 
 		render json: {user: @user, offer: @offer, product: @product, listing: @listing}
 	end

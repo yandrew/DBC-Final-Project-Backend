@@ -7,7 +7,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  # storage :file
+  storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -15,18 +15,21 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def store_dir
   #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   # end
-    include Cloudinary::CarrierWave
 
-    process :convert => 'png'
-    process :tags => ['post_picture']
-    
-    version :standard do
-      process :resize_to_fill => [100, 150, :north]
-    end
-    
-    version :thumbnail do
-      resize_to_fit(50, 50)
-    end
+
+  # include Sprockets::Helpers::RailsHelper
+  # include Sprockets::Helpers::IsolatedHelper
+
+  # include Cloudinary::CarrierWave
+  
+  # process :tags => ["photo_album_sample"]
+  # process :convert => "jpg"
+
+  # version :thumbnail do
+  #   eager
+  #   resize_to_fit(150, 150)
+  #   cloudinary_transformation :quality => 80          
+  # end  
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:

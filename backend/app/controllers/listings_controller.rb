@@ -30,6 +30,8 @@ class ListingsController < ApplicationController
 		@listing = @user.create.listings.create(max_price: params[:max_price], accept_price: params[:accept_price], expires_at: params[:expires_at])
 		@product = @listing.create_product(name: params[:name], description: params[:description], image_url: params[:image_url])
 		@user.products << @product
+		@product.save
+		@user.save
 	end
 
 	def show
