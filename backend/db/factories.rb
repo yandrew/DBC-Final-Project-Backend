@@ -28,7 +28,7 @@ FactoryGirl.define do
 		image_url {"http://lorempixel.com/400/200/technics/#{rand(1..10).to_s}"}
 		description {Faker::Hacker.say_something_smart}
 		condition {tfn[rand(0..5)]}
-    category_id {rand(1..70)}
+    category_id {rand(1..150)}
   end
 
   factory :rating do

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     end
     resources :products
     resources :ratings
+    get '/categories' => 'categories#index'
   # Example resource route with options:
   #   resources :products do
   #     member do
