@@ -5,6 +5,7 @@ class CreateOffers < ActiveRecord::Migration
       t.belongs_to :user
       t.belongs_to :product
       t.integer :bid_id
+      t.boolean :valid, default: true
       
       t.timestamps
     end

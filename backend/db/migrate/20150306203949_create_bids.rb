@@ -4,7 +4,7 @@ class CreateBids < ActiveRecord::Migration
       t.boolean :purchased, default: false
       t.belongs_to :listing
       t.integer :offer_id
-      t.boolean :invalid, default: false
+
 
       t.timestamps
     end

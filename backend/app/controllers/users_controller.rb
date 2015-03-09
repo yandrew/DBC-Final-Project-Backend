@@ -8,7 +8,10 @@ class UsersController < ApplicationController
 	end
 
 	def create
+		@user = User.create(username: params[:username], password_hash: params[:password_hash], name: params[:name], email: params[:email], avatar: params[:avatar], bio: params[:bio])
+		render json: @user
 	end
+
 	def listings
 		@user = User.find(params[:user_id])
 		listings = @user.listings
@@ -68,7 +71,8 @@ class UsersController < ApplicationController
 			"max_price" => offer.bid.listing.max_price,
 			"accept_price" => offer.bid.listing.accept_price,
 			"lowest_offer" => offer.bid.listing.bids.order(created_at: :desc).first.offer.offer_price,
-			"your_offer" => offer.offer_price
+			"your_offer" => offer.offer_price,
+			"valid_offer" => offer.valid
 			}
 			@listings << listing
 		end

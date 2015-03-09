@@ -27,7 +27,7 @@ FactoryGirl.define do
   factory :product do
     name {Faker::Commerce.product_name}
 		image_url {"http://lorempixel.com/400/200/technics/#{rand(1..10).to_s}"}
-		description {Faker::Commerce.color}
+		description {Faker::Hacker.say_something_smart}
 		condition {tfn[rand(0..5)]}
   end
 

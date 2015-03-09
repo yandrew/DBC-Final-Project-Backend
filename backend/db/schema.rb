@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150309050750) do
     t.boolean  "purchased",  default: false
     t.integer  "listing_id"
     t.integer  "offer_id"
-    t.boolean  "invalid",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150309050750) do
     t.integer  "user_id"
     t.integer  "product_id"
     t.integer  "bid_id"
+    t.boolean  "valid",       default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

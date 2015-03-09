@@ -40,17 +40,19 @@ class ListingsController < ApplicationController
 		@offers = []
 		@listing = []
 		offers.map do |offer|
-			
-			@offer = {
-				"product_id" => offer.product.id,
-				"name" => offer.product.name,
-				"image_url" => offer.product.image_url,
-				"description" => offer.product.description,
-				"condition" => offer.product.condition,
-				"created_at" => offer.created_at,
-				"offer_price" => offer.offer_price,
-				"seller" => offer.user
-			}
+			if offer.valid == true
+				@offer = {
+					"offer_id" => offer.id,
+					"product_id" => offer.product.id,
+					"name" => offer.product.name,
+					"image_url" => offer.product.image_url,
+					"description" => offer.product.description,
+					"condition" => offer.product.condition,
+					"created_at" => offer.created_at,
+					"offer_price" => offer.offer_price,
+					"seller" => offer.user
+					}
+			end
 			@offers << @offer
 		end
 
@@ -76,6 +78,12 @@ class ListingsController < ApplicationController
 	end
 
 	def update
+	end
+
+	def invalid
+		@offer = Offer.find(params[:offer_id])
+		@offer.invalid_offer
+		@offer.save
 	end
 
 	def destroy
