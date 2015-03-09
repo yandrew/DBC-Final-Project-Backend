@@ -5,6 +5,7 @@ gem 'rails', '4.1.6'
 
 gem 'rails-api'
 
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'pg'
 
@@ -17,9 +18,13 @@ group :test, :development do
 	gem 'factory_girl_rails'
 	gem 'faker'
 	gem 'shoulda-matchers', require: false
+	gem 'railroady'
 end
 
-# gem 'safe_attributes'
+gem 'cloudinary'
+gem 'carrierwave'
+
+gem 'safe_attributes'
 
 # To use ActiveModel has_secure_password
 # 

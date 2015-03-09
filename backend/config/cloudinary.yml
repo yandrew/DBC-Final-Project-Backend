@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dbc
+  api_key: '327488173822848'
+  api_secret: oydSjVr3iz4rGAGIo0JjreJRrgo
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dbc
+  api_key: '327488173822848'
+  api_secret: oydSjVr3iz4rGAGIo0JjreJRrgo
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dbc
+  api_key: '327488173822848'
+  api_secret: oydSjVr3iz4rGAGIo0JjreJRrgo
+  enhance_image_tag: true
+  static_image_support: false

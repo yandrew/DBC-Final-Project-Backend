@@ -1,39 +1,38 @@
+
 FactoryGirl.define do
   factory :user do
     username {Faker::Internet.user_name}
 		password_hash "123"
 		name {Faker::Name.name}
 		email {Faker::Internet.email}
-		avatar {Faker::Avatar.image}
+		avatar {"http://lorempixel.com/175/175/people/#{rand(1..10).to_s}"}
 		bio "MyText"
+    rating {rand(1..10)}
 	end
 
 	factory :listing do
-    max_price {Faker::Commerce.price.to_s}
-		base_price {Faker::Commerce.price.to_s}
-		product_id
-		association :user_id, factory: :user
-		association :product_id, factory: :product
+    max_price {rand(200..300)}
+		accept_price {rand(50)}
+    expires_at {Faker::Time.forward(rand(1..30), :all)}
 	end
-
+  range = [1.99, 49.99, 50.99, 99.99, 100.99, 149.99, 150.99, 199.99]
+  @a = range.pop
+  @b = range.pop
 	factory :offer do
-    offer_price {Faker::Commerce.price.to_s}
-    product_id
-    association :user_id, factory: :user
-    association :product_id, factory: :product
+    offer_price {rand(1.0..200.0)}
   end
+
+  tfn = ["average,", "mint", "new", "good", "old" ,"working"]
 
   factory :product do
     name {Faker::Commerce.product_name}
-		image_url "MyText"
-		description "MyText"
-		condition "MyString"
+		image_url {"http://lorempixel.com/400/200/technics/#{rand(1..10).to_s}"}
+		description {Faker::Hacker.say_something_smart}
+		condition {tfn[rand(0..5)]}
   end
 
   factory :bid do
-    transaction false
-    association :listing_id, factory: :listing
-    association :offer_id, factory: :offer
+    purchased false
   end
 
   factory :rating do
@@ -45,7 +44,6 @@ FactoryGirl.define do
   end
 
   factory :category do
-    name "MyString"
-    association :product_id, factory: :product
+    name {Faker::Commerce.department}
   end
 end

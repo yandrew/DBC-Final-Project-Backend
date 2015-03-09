@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.text :avatar
       t.text :bio
-      t.integer :rating
+      t.integer :rating, default: nil
 
       t.timestamps
     end

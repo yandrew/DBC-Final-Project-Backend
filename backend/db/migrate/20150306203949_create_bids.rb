@@ -5,6 +5,7 @@ class CreateBids < ActiveRecord::Migration
       t.belongs_to :listing
       t.integer :offer_id
 
+
       t.timestamps
     end
   end
