@@ -79,6 +79,8 @@ class ListingsController < ApplicationController
 
 
 	def destroy
+		@listing = Listing.find(params[:listing_id])
+		@listing.destroy
 	end
 
 end

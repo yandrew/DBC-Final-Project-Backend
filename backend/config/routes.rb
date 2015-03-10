@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :ratings
     get '/categories' => 'categories#index'
     post '/users/login' => 'users#login'
+    get '/users/upload/form' => 'users#uploadform'
+    post '/users/upload/image' => 'users#upload'
   # Example resource route with options:
   #   resources :products do
   #     member do

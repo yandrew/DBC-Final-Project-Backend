@@ -1,8 +1,14 @@
-# class UserMailer < ActionMailer::Base
-#   default from: "notifications.sellme@gmail.com"
+class UserMailer < ActionMailer::Base
+  default from: "notifications.sellme@gmail.com"
 
-#   def welcome_email(user)
-#   	@user = user
-  	
-#   end
-# end
+  def registration_confirmation(user)
+  	mail(:to => user.email, :subject => "Registered", :from => "notifications.sellme.gmail.com")
+  end
+
+  def invalid_offer(user)
+  	mail(:to => user.email, :subject => "Registered", :from => "notifications.sellme.gmail.com")
+  end
+
+  def offer_accepted(user)
+  end
+end
