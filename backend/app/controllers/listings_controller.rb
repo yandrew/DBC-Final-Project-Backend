@@ -23,11 +23,15 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-		@user = User.find(params[:user_id])
-		@product = @user.products.create(name: params[:name], description: params[:description], image_url: params[:image_url], category_id: params[:category_id])
-		@product.create_listing(max_price: params[:max_price], accept_price: params[:accept_price], expires_at: params[:expires_at])
-
-		
+		@user = User.find(params[:user_id]) if params[:user_id]
+		if @user
+			@product = @user.products.create(name: params[:name], description: params[:description], image_url: params[:image_url], category_id: params[:category_id])
+			@product.save
+			@product.create_listing(max_price: params[:max_price], accept_price: params[:accept_price], expires_at: params[:expires_at])
+			render text: "Listing has been created"
+		else
+			render text: "Must be logged in to create a listing"
+		end
 	end
 
 	def show
@@ -46,7 +50,7 @@ class ListingsController < ApplicationController
 					"condition" => offer.product.condition,
 					"created_at" => offer.created_at,
 					"offer_price" => offer.offer_price,
-					"seller" => offer.user
+					"seller" => offer.user.as_json(:except => [:password_hash])
 					}
 			end
 			@offers << @offer
@@ -79,8 +83,13 @@ class ListingsController < ApplicationController
 
 
 	def destroy
-		@listing = Listing.find(params[:listing_id])
-		@listing.destroy
+		@user = User.find(params[:user_id]) if params[:user_id]
+		if @user
+			@listing = Listing.find(params[:listing_id])
+			@listing.destroy
+		else
+			render text: "You must be logged in to delete a listing"
+		end
 	end
 
 end

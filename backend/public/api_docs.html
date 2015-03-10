@@ -1,0 +1,69 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#docs {
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			width: 30%;
+		};
+
+		h2 {
+			text-align: center;
+		};
+	</style>
+</head>
+<body>
+	<h1>SellMe</h1>
+	<h1>Routes and Required Params</h1>
+	<hr>
+	<div id='docs'>
+		<div id='subdiv'>
+			<h2>USERS</h2>
+			<hr>
+			<strong>GET:   	/          								users#index </strong>
+
+			<strong>POST:  	/users/login   						users#login</strong>
+				<ul><li>required params: {:username or :email, :password}</li></ul>
+			<strong>GET    	/users/:user_id     			users#show</strong>
+				<ul><li>required params: {:user_id} </li></ul>
+			<strong>POST:  	/users         						users#create</strong>
+					<ul><li>required params: {:username, :password, :name, :email, :avatar, :bio} </li></ul>
+			<strong>GET    	/users/:user_id/listings	users#listings</strong>
+					<ul><li>required params: {:user_id} </li></ul>
+			<strong>GET:   	/users/:user_id/offers 		users#offers</strong>
+					<ul><li>required params: {:user_id} </li></ul>
+			<strong>DELETE:	/users/:user_id						users#destroy</strong>
+					<ul><li>required params: {:user_id} </li></ul>
+			<br>
+			<h2>LISTINGS</h2>
+			<hr>
+			<strong>GET:    /listings									listings#index</strong>
+			<strong>POST:   /listings									listings#create</li>
+					<ul><li>required params: {:user_id, :name, :description, :image_url, :category_id, :max_price, :accept_price, :expires_at} </li></ul>
+
+			<strong>GET:    /listings/:id    					listings#show</strong>	
+					<ul><li>required params: {:id} </li></ul>
+
+			<strong>PUT:    /listings/:id 						listings#update</strong>
+					<ul><li>required params: {:id} </li></ul>
+
+			<strong>DELETE: /listings/:id 						listings#destroy</strong>
+					<ul><li>required params: {:id} </li></ul>
+
+			<h2>OFFERS</h2>
+
+			<li>POST:  /listings/:listing_id/offers 			offers#create</li>
+					<ul><li>required params: {:user_id, :name, :description, :image_url, :price, :listing_id} </li></ul>
+
+			<strong>POST:  	/offers/invalidate          			offers#invalidate</strong>
+				<ul><li>required params: {:offer_id} </li></ul>
+			<strong>POST:  	/offers/accept										offers#accepts</strong>
+				<ul><li>required params: {:offer_id} </li></ul>
+			<strong>DELETE /listings/:listing_id/offers/:id 	offers#destroy</strong>
+				<ul><li>required params: {:offer_id} </li></ul>
+		</div>
+	</div>
+</body>
+</html>

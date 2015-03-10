@@ -3,14 +3,17 @@ class OffersController < ApplicationController
 	end
 
 	def create
-		@user = User.find(params[:user_id])
-		@product = @user.products.create(name: params[:name], description: params[:description], image_url: params[:image_url])
-		@offer = @product.create_offer(offer_price: params[:price])
-		@listing = Listing.find(params[:listing_id])
-		@listing.offers << @offer
-		@offer.save
-
-		render json: {user: @user, offer: @offer, product: @product, listing: @listing}
+		@user = User.find(params[:user_id]) if params[:user_id]
+		if @user
+			@product = @user.products.create(name: params[:name], description: params[:description], image_url: params[:image_url])
+			@offer = @product.create_offer(offer_price: params[:price])
+			@listing = Listing.find(params[:listing_id])
+			@listing.offers << @offer
+			@offer.save
+			render json: {user: @user, offer: @offer, product: @product, listing: @listing}
+		else
+			render(:file => File.join(Rails.root, 'public/404.html'), :status => 403, :layout => false)
+		end
 	end
 
 	def invalidate
@@ -30,6 +33,7 @@ class OffersController < ApplicationController
 	end
 
 	def destroy
+
 		@offer = Offer.find(params[:offer_id])
 		@offer.destroy
 	end
