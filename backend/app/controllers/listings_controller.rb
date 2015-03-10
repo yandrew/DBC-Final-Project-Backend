@@ -3,10 +3,8 @@ class ListingsController < ApplicationController
 		listings = Listing.all
 		@listings = []
 		listings.map do |listing|
-			
 			@listing = {
 				"listing_id" => listing.id,
-				"product_id" => listing.product.id,
 				"name" => listing.product.name,
 				"category" => listing.product.category.name,
 				"image_url" => listing.product.image_url,
@@ -21,14 +19,15 @@ class ListingsController < ApplicationController
 			}
 			@listings << @listing
 		end
-		
 		render json: @listings
 	end
 
 	def create
 		@user = User.find(params[:user_id])
-		@product = @user.products.create(name: params[:name], description: params[:description], image_url: params[:image_url])
-		@product.create_listing(max_price: params[:max_price], accept_price: params[:accept_price], expires_at: params[:expires_at], category_id: params[:category_id])
+		@product = @user.products.create(name: params[:name], description: params[:description], image_url: params[:image_url], category_id: params[:category_id])
+		@product.create_listing(max_price: params[:max_price], accept_price: params[:accept_price], expires_at: params[:expires_at])
+
+		
 	end
 
 	def show
@@ -77,11 +76,7 @@ class ListingsController < ApplicationController
 	def update
 	end
 
-	def invalid
-		@offer = Offer.find(params[:offer_id])
-		@offer.invalid_offer
-		@offer.save
-	end
+
 
 	def destroy
 	end

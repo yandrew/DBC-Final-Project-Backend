@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automaticall
     get '/users/:user_id/listings' => "users#listings"
     get '/users/:user_id/offers' => "users#offers"
-    put 'listings/:id/invalid/:offer_id' => "listings#invalid"
+    post 'offers/accept' => "offers#accept"
+    post 'offers/invalidate' => "offers#invalidate"
     resources :users
     resources :listings do
       resources :offers
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
     resources :products
     resources :ratings
     get '/categories' => 'categories#index'
+    post '/users/login' => 'users#login'
   # Example resource route with options:
   #   resources :products do
   #     member do

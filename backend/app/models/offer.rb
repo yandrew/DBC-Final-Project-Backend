@@ -4,6 +4,8 @@ class Offer < ActiveRecord::Base
   belongs_to :listings
   belongs_to :rating
   before_save :add_user_id
+  validates :offer_price, presence: true
+  validates_associated :products
 
 
   def invalid_offer

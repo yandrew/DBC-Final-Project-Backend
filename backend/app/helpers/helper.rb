@@ -36,8 +36,8 @@ helpers do
     redirect '/'
   end
 
-  def session_authenticate email, password
-    candidate = User.find_by(:email => email)
+  def session_authenticate(username, password)
+    candidate = User.find_by(:username => username)
 
     unless candidate.blank?
 

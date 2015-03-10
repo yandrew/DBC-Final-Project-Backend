@@ -11,23 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309050750) do
+ActiveRecord::Schema.define(version: 20150306205015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name", default: "None"
   end
 
   create_table "listings", force: true do |t|
     t.float    "max_price"
-    t.float    "accept_price"
+    t.float    "accept_price", default: 0.0
     t.integer  "user_id"
     t.datetime "expires_at"
     t.integer  "rating_id"
+    t.boolean  "closed",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,13 +38,6 @@ ActiveRecord::Schema.define(version: 20150309050750) do
     t.integer  "listing_id"
     t.boolean  "valid",       default: true
     t.boolean  "purchased",   default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "photos", force: true do |t|
-    t.string   "image"
-    t.integer  "bytes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

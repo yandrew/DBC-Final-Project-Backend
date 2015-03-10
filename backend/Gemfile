@@ -26,6 +26,9 @@ gem 'carrierwave'
 
 gem 'safe_attributes'
 
+gem 'httparty'
+
+
 # To use ActiveModel has_secure_password
 # 
 

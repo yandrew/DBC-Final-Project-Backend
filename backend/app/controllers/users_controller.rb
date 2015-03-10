@@ -2,9 +2,22 @@ class UsersController < ApplicationController
 	def index
 	end
 
+	def login
+		@user = User.find_by(username: params[:username])
+    if @user.password == params[:password]
+			render json: {id: @user.id}
+		else
+			render(:file => File.join(Rails.root, 'public/404.html'), :status => 403, :layout => false)
+		end
+	end
+
 	def show
 		@user = User.find(params[:id])
-		render json: @user
+		if @user
+			render :json => { :user => @user.as_json(:except => [:password_hash])}
+		else
+			render(:file => File.join(Rails.root, 'public/404.html'), :status => 403, :layout => false)
+		end
 	end
 
 	def create

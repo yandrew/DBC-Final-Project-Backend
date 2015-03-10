@@ -1,8 +1,8 @@
 
 FactoryGirl.define do
   factory :user do
-    username {Faker::Internet.user_name}
-		password_hash "123"
+    username {(0...8).map { (65 + rand(26)).chr }.join}
+		password "123"
 		name {Faker::Name.name}
 		email {Faker::Internet.email}
 		avatar {"http://lorempixel.com/175/175/people/#{rand(1..10).to_s}"}
