@@ -12,20 +12,45 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automaticall
-    get '/users/:user_id/listings' => "users#listings"
-    get '/users/:user_id/offers' => "users#offers"
-    post 'offers/accept' => "offers#accept"
-    post 'offers/invalidate' => "offers#invalidate"
+    
     resources :users
-    resources :listings do
-      resources :offers
-    end
-    resources :products
-    resources :ratings
+    #resources :products
+    resources :listings
+    resources :offers
+
+    #users 
+      #create
+      #delete
+
+    #listings
+      #create
+      #delete
+
+    #offers
+      #create
+      #delete
+
+    # resources :listings do
+    #   resources :offers
+    # end
+    #resources :ratings
+    
+
+    #CUSTOM ROUTES MADE BY RANDY:
+
     get '/categories' => 'categories#index'
     post '/users/login' => 'users#login'
-    get '/users/upload/form' => 'users#uploadform'
-    post '/users/upload/image' => 'users#upload'
+    #get '/users/upload/form' => 'users#uploadform'
+    #post '/users/upload/image' => 'users#upload'
+    get '/users/:user_id/listings' => "users#listings"
+    #get '/users/:user_id/offers' => "users#offers"
+    #post 'offers/accept' => "offers#accept"
+    #post 'offers/invalidate' => "offers#invalidate"
+  
+
+
+
+
   # Example resource route with options:
   #   resources :products do
   #     member do

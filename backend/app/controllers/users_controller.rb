@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 	end
 
 	def login
+		puts "on login route"
 		@user = User.find_by(username: params[:username]) if params[:username]
 		@user = User.find_by(email: params[:email]) if params[:email]
     if @user.password == params[:password]
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#fixed
 	def show
 		@user = User.find(params[:id])
 		if @user
@@ -22,9 +24,20 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#fixed
 	def create
-		@user = User.create(username: params[:username], password_hash: params[:password_hash], name: params[:name], email: params[:email], avatar: params[:avatar], bio: params[:bio])
+		@user = User.create(username: params[:username], password: params[:password], name: params[:name], email: params[:email], avatar: params[:avatar], bio: params[:bio])
+		puts "User created with success #{@user.id}"
 		render json: @user.as_json(:except => [:password_hash])
+	end
+
+	#fixed
+	def destroy
+		puts params
+		@user = User.find(params[:id])
+		if @user.destroy
+			puts "User destroyed with sucess"
+		end
 	end
 
 	def listings
@@ -71,6 +84,8 @@ class UsersController < ApplicationController
 		end
 	end
 
+
+
 	def offers
 		@user = User.find(params[:user_id]) if params[:user_id]
 		if @user
@@ -102,11 +117,6 @@ class UsersController < ApplicationController
 		else
 			render(:file => File.join(Rails.root, 'public/404.html'), :status => 403, :layout => false)
 		end
-	end
-
-	def destroy
-		@user = User.find(params[:user_id])
-		@user.destroy
 	end
 
 

@@ -23,15 +23,29 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-		@user = User.find(params[:user_id]) if params[:user_id]
-		if @user
-			@product = @user.products.create(name: params[:name], description: params[:description], image_url: params[:image_url], category_id: params[:category_id])
-			@product.save
-			@product.create_listing(max_price: params[:max_price], accept_price: params[:accept_price], expires_at: params[:expires_at])
-			render text: "Listing has been created"
+
+		listing = Listing.new(max_price: params[:max_price], accept_price: params[:accept_price], user_id: params[:user_id], expires_at: params[:expires_at], rating_id: 1 );
+		listing.save
+		puts listing.errors.full_messages
+		product = Product.create(name: params[:name], description: params[:description], condition: params[:condition], image_url: params[:image_url], user_id: params[:user_id], listing_id: listing.id, category_id: params[:category_id])
+
+		if product && listing
+			render text: "Listing #{listing.id} and product #{product.id} have been created"
+		elsif product
+			render text: "Failed to create listing"
+		elsif listing
+			render text: "Failed to create listing"
 		else
-			render text: "Must be logged in to create a listing"
+			render text: "Failed to create listing and product. You are screwed"
 		end
+
+		# @user = User.find(params[:user_id]) if params[:user_id]
+		# if @user
+		# 	@user.products.create(name: params[:name], description: params[:description], image_url: params[:image_url], category_id: params[:category_id]).create_listing(max_price: params[:max_price], accept_price: params[:accept_price], expires_at: params[:expires_at])
+		# 	render text: "Listing has been created"
+		# else
+		# 	render text: "Must be logged in to create a listing"
+		# end
 	end
 
 	def show
