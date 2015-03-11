@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   include BCrypt
   has_many :products
-	has_many :listings, through: :products
-	has_many :offers, through: :products
+	has_many :listings #, through: :products
+	has_many :offers #, through: :products
   has_many :ratings
 
   validates :username, :presence => {:message => "Type in username you must"}

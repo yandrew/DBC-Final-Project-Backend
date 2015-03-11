@@ -1,27 +1,48 @@
 class ListingsController < ApplicationController
+	
 	def index
-		listings = Listing.all
-		@listings = []
-		listings.map do |listing|
-			@listing = {
+		listings_to_send = []
+		Listing.all.each do |listing|
+			if listing.offers == []
+				lowest_offer = 0
+			else
+				lowest_offer =  listing.offers.order(created_at: :desc).first.offer_price
+			end
+			p "on index show"
+			p listing.product
+			p listing.user
+			if listing.product && listing.user
+				 listing_to_send = {
+					"listing_id" => listing.id,
+					"name" => listing.product.name,
+					"category" => listing.product.category.name,
+					"image_url" => listing.product.image_url,
+					"description" => listing.product.description,
+					"condition" => listing.product.condition,
+					"created_at" => listing.created_at,
+					"expires_at" => listing.expires_at,
+					"username" => listing.user.username,
+					"max_price" => listing.max_price,
+					"accept_price" => listing.accept_price,
+					"lowest_offer" => lowest_offer
+				}
+			else
+				listing_to_send = {
 				"listing_id" => listing.id,
-				"name" => listing.product.name,
-				"category" => listing.product.category.name,
-				"image_url" => listing.product.image_url,
-				"description" => listing.product.description,
-				"condition" => listing.product.condition,
 				"created_at" => listing.created_at,
 				"expires_at" => listing.expires_at,
-				"username" => listing.user.username,
 				"max_price" => listing.max_price,
 				"accept_price" => listing.accept_price,
-				"lowest_offer" => listing.offers.order(created_at: :desc).first.offer_price
-			}
-			@listings << @listing
+				"lowest_offer" => lowest_offer
+			 }			
+			end
+			listings_to_send << listing_to_send
 		end
-		render json: @listings
+		puts listings_to_send
+		render json: listings_to_send
 	end
 
+	#fixed
 	def create
 
 		listing = Listing.new(max_price: params[:max_price], accept_price: params[:accept_price], user_id: params[:user_id], expires_at: params[:expires_at], rating_id: 1 );
@@ -48,14 +69,20 @@ class ListingsController < ApplicationController
 		# end
 	end
 
+	#fixed
 	def show
 		listing = Listing.find(params[:id])
-		@offers = []
-		@listing = []
-		offers = listing.offers
-		offers.map do |offer|
+		listing_offers = []
+
+		if listing.offers != []
+			lowest_offer = listing.offers.order(created_at: :desc).first.offer_price
+		else
+			lowest_offer = 0
+		end
+
+		listing_offers = listing.offers.map do |offer|
 			if offer.valid
-				@offer = {
+				{
 					"offer_id" => offer.id,
 					"product_id" => offer.product.id,
 					"name" => offer.product.name,
@@ -67,8 +94,8 @@ class ListingsController < ApplicationController
 					"seller" => offer.user.as_json(:except => [:password_hash])
 					}
 			end
-			@offers << @offer
 		end
+		listing_offers.compact!
 
 		listing_info = {
 			"listing_id" => listing.id,
@@ -83,27 +110,29 @@ class ListingsController < ApplicationController
 			"username" => listing.user.username,
 			"max_price" => listing.max_price,
 			"accept_price" => listing.accept_price,
-			"lowest_offer" => listing.offers.order(created_at: :desc).first.offer_price,
-			"offers" => @offers
+			"lowest_offer" => lowest_offer,
+			"offers" => listing_offers
 		}
-		@listing = listing_info
 
-		render json: @listing
+		render json: listing_info
 	end
 
 	def update
 	end
 
 
-
+	#fixed
 	def destroy
-		@user = User.find(params[:user_id]) if params[:user_id]
-		if @user
-			@listing = Listing.find(params[:listing_id])
-			@listing.destroy
-		else
-			render text: "You must be logged in to delete a listing"
-		end
+		puts params
+		listing = Listing.find(params[:id])
+		listing.destroy
+		#@user = User.find(params[:user_id]) if params[:user_id]
+		# if @user
+		# 	@listing = Listing.find(params[:listing_id])
+		# 	@listing.destroy
+		# else
+		# 	render text: "You must be logged in to delete a listing"
+		# end
 	end
 
 end

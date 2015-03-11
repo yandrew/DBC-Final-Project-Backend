@@ -4,6 +4,7 @@ class CreateListings < ActiveRecord::Migration
       t.float :max_price
       t.float :accept_price, default: 0
       t.belongs_to :user
+      #t.integer :user_id
       t.datetime :expires_at
       t.belongs_to :rating
       t.boolean :closed, default: false

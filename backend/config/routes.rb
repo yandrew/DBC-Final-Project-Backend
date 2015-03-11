@@ -19,15 +19,15 @@ Rails.application.routes.draw do
     resources :offers
 
     #users 
-      #create
-      #delete
+      #create ok
+      #delete ok
 
     #listings
-      #create
-      #delete
+      #create ok
+      #delete ok
 
     #offers
-      #create
+      #create 
       #delete
 
     # resources :listings do
@@ -46,9 +46,6 @@ Rails.application.routes.draw do
     #get '/users/:user_id/offers' => "users#offers"
     #post 'offers/accept' => "offers#accept"
     #post 'offers/invalidate' => "offers#invalidate"
-  
-
-
 
 
   # Example resource route with options:

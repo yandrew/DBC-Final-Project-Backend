@@ -7,7 +7,8 @@ class Listing < ActiveRecord::Base
   validates :max_price , :expires_at, presence: true
   #validates_associated :products
 
-  def add_user_id
-  	self.user_id = self.product.user_id
-  end
+  # def add_user_id
+  # 	self.user_id = self.product.user_id
+  # end
+  
 end

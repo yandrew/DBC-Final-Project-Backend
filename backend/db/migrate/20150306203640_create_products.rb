@@ -5,6 +5,11 @@ class CreateProducts < ActiveRecord::Migration
       t.text :image_url
       t.text :description
       t.string :condition
+      #t.integer :user_id
+      #t.integer :listing_id
+      #t.integer :offer_id
+      #t.integer :category_id
+
       t.belongs_to :user
       t.belongs_to :category
       t.belongs_to :listing
