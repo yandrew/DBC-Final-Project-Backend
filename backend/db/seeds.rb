@@ -27,6 +27,8 @@ p categories
 p categories.length
 
 User.create(username: 'test', password: 'test', name:Faker::Name.name, email: Faker::Internet.email, avatar: "http://lorempixel.com/175/175/people/#{rand(1..10).to_s}", bio: "MyText", buyer_rating: rand(1..10), seller_rating: rand(1..10))
+
+
 # 20.times {
 # 	user1 = FactoryGirl.create :user
 
