@@ -102,6 +102,7 @@ class ListingsController < ApplicationController
 			"product_id" => listing.product.id,
 			"name" => listing.product.name,
 			"category" => listing.product.category.name,
+			"closed" => listing.closed,
 			"image_url" => listing.product.image_url,
 			"description" => listing.product.description,
 			"condition" => listing.product.condition,

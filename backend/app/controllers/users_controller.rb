@@ -76,6 +76,7 @@ class UsersController < ApplicationController
 						"name" => listing.product.name,
 						"category" => listing.product.category.name,
 						"image_url" => listing.product.image_url,
+						"closed" => listing.closed,
 						"description" => listing.product.description,
 						"condition" => listing.product.condition,
 						"created_at" => listing.created_at,
@@ -106,6 +107,8 @@ class UsersController < ApplicationController
 				offer_to_send = offer.as_json
 				offer_to_send["product"] = offer.product.as_json
 				offer_to_send["listing"] = offer.listing.as_json
+        offer_to_send["listing_product"] = offer.listing.product.as_json
+        offer_to_send["user_details"] = offer.user				
 				offers_to_send << offer_to_send
 			end
 			p "in offers"

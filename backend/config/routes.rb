@@ -44,9 +44,8 @@ Rails.application.routes.draw do
     #post '/users/upload/image' => 'users#upload'
     get '/users/:user_id/listings' => "users#listings"
     get '/users/:user_id/offers' => "users#offers"
-    #post 'offers/accept' => "offers#accept"
+    post 'offers/accept' => "offers#accept"
     #post 'offers/invalidate' => "offers#invalidate"
-
 
   # Example resource route with options:
   #   resources :products do

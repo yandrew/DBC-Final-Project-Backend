@@ -38,15 +38,16 @@ class OffersController < ApplicationController
 	# 	@offer.save
 	# end
 
-	# def accept
-	# 	@offer = Offer.find(params[:offer_id])
-	# 	@offer.purchased = true
-	# 	@offer.save
-	# 	@listing = Listing.find(@offer.listing_id)
-	# 	@listing.closed = true
-	# 	@listing.save
-	# 	render json: {offer: @offer, listing: @listing}
-	# end
+	def accept
+		offer = Offer.find(params[:offer_id])
+		offer.purchased = true
+		offer.save
+		listing = Listing.find(offer.listing_id)
+		listing.closed = true
+		listing.save
+		render text: "Offer #{offer.id} has been accepted for listing #{listing.id}"
+		#render json: {offer: offer, listing: listing}
+	end
 
 	def destroy
 		offer = Offer.find(params[:id])
