@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     #get '/users/upload/form' => 'users#uploadform'
     #post '/users/upload/image' => 'users#upload'
     get '/users/:user_id/listings' => "users#listings"
-    #get '/users/:user_id/offers' => "users#offers"
+    get '/users/:user_id/offers' => "users#offers"
     #post 'offers/accept' => "offers#accept"
     #post 'offers/invalidate' => "offers#invalidate"
 
