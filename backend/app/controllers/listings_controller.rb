@@ -1,5 +1,7 @@
+require 'mandrill'
+
 class ListingsController < ApplicationController
-	
+
 	def index
 		listings_to_send = []
 		Listing.all.each do |listing|

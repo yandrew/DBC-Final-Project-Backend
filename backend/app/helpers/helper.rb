@@ -1,4 +1,4 @@
-# helpers do
+helpers do
 
 #   # Returns true if current_user exists, false otherwise
 #   # def logged_in?

@@ -29,6 +29,10 @@ gem 'safe_attributes'
 
 gem 'httparty'
 
+gem 'mandrill-api'
+
+gem 'dotenv-rails'
+
 
 # To use ActiveModel has_secure_password
 # 
