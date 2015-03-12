@@ -3,6 +3,7 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :offers
   belongs_to :rating
+  has_many :comments
   #before_save :add_user_id
   validates :max_price , :expires_at, presence: true
   #validates_associated :products
@@ -10,5 +11,5 @@ class Listing < ActiveRecord::Base
   # def add_user_id
   # 	self.user_id = self.product.user_id
   # end
-  
+
 end

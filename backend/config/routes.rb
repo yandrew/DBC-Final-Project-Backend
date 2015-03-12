@@ -12,13 +12,13 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automaticall
-    
+
     resources :users
     #resources :products
     resources :listings
     resources :offers
-
-    #users 
+    resources :comments, only: :create
+    #users
       #create ok
       #delete ok
 
@@ -27,16 +27,18 @@ Rails.application.routes.draw do
       #delete ok
 
     #offers
-      #create 
+      #create
       #delete
 
     # resources :listings do
     #   resources :offers
     # end
     #resources :ratings
-    
+
 
     #CUSTOM ROUTES MADE BY RANDY:
+    get '/comments/listing/:listing_id' => "comments#show_listing_comments"
+    get '/comments/offer/:offer_id' => "comments#show_offer_comments"
 
     get '/categories' => 'categories#index'
     post '/users/login' => 'users#login'
@@ -45,6 +47,9 @@ Rails.application.routes.draw do
     get '/users/:user_id/listings' => "users#listings"
     get '/users/:user_id/offers' => "users#offers"
     post 'offers/accept' => "offers#accept"
+    post '/offers/:offer_id/comment' => "comment#create"
+    post '/listing/:listing_id/comment' => "comment#comment"
+
     #post 'offers/invalidate' => "offers#invalidate"
 
   # Example resource route with options:

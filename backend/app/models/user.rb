@@ -4,10 +4,11 @@ class User < ActiveRecord::Base
 	has_many :listings #, through: :products
 	has_many :offers #, through: :products
   has_many :ratings
+  has_many :comments
 
   validates :username, :presence => {:message => "Type in username you must"}
   validates :username, :uniqueness => {:message => "Please stop trying to steal other people's usernames."}
-  
+
   def password
     @password ||= Password.new(password_hash)
   end
