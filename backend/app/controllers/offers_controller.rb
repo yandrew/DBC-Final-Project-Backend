@@ -66,7 +66,7 @@ class OffersController < ApplicationController
 		begin
 		  mandrill = Mandrill::API.new
 		  message = {
-		   :subject=> args["subject"],
+		   :subject=> args[:subject],
 		   :from_name=> "SellMe.io",
 		   :text=>"",
 		   :to=>[
